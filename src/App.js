@@ -18,10 +18,9 @@ export default class App extends React.Component {
       .then((res) => res.json())
       .then((res) => this.setState({ results: res.items }));
   };
-  updateState = (key, value) => {
-    this.setState(//update q to search box value);
-  };
-  //items.volumeInfo
+
+  //use map?
+  updateState;
   render() {
     return (
       <div className="app">

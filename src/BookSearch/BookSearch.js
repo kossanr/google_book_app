@@ -13,7 +13,7 @@ export default class BookSearch extends React.Component {
           value={this.props.q}
           id="search"
           placeholder="Search"
-          onChange={(e) => this.props.updateState("q", e.target.value)}
+          onChange={(e) => this.props.updateState("q", e.target.value)} //target is componenet that triggered event (onSubmit triggered event)
         />
         <button className="search_button">search</button>
       </form>
