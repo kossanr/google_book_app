@@ -3,12 +3,17 @@ import React from "react";
 export default class BookSearch extends React.Component {
   render() {
     return (
-      <div className="results">
-        <form className="search_form">
-          <input type="text" name="search" id="search" placeholder="Search" />
-          <button className="search_button">search</button>
-        </form>
-      </div>
+      <form className="search_form">
+        <input
+          type="text"
+          //   value={this.state.results.q}
+          id="search"
+          placeholder="Search"
+        />
+        <button onClick={this.props.searchButton} className="search_button">
+          search
+        </button>
+      </form>
     );
   }
 }
