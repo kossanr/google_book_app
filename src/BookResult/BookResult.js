@@ -1,12 +1,16 @@
 import React from "react";
+import BookDetail from "../BookDetail/BookDetail";
 
-export default class BookSearch extends React.Component {
-  render() {
-    return (
-      <div className="results">
-        <h2> Results </h2>
-      </div>
-    );
-    //return result of search 'q' and 'booktype'
-  }
+export default function BookSearch(props) {
+  const { results } = props;
+  const bookResults = results.map((book, index) => (
+    <li key={index}>{book.volumeInfo.title}</li>
+  ));
+  return (
+    <div className="results">
+      <ul>
+        <BookDetail bookResults={bookResults} />
+      </ul>
+    </div>
+  );
 }

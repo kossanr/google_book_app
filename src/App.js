@@ -1,37 +1,39 @@
 import React from "react";
 import BookResult from "./BookResult/BookResult";
 import BookSearch from "./BookSearch/BookSearch";
+import "./App.css";
 
 export default class App extends React.Component {
   //state object with one property
   state = {
     results: [],
-    q: "",
-    printType: "ebook",
+    q: "Harry Potter",
+    printType: "all",
+    filter: " ",
   };
-
-  searchButton = (e) => {
+  updateState = (key, value) => {
+    this.setState({ [key]: value });
+  };
+  search = (e) => {
     e.preventDefault();
     let url = `https://www.googleapis.com/books/v1/volumes?q=${this.state.q}&key=AIzaSyBw8AstDk2a8m-jyiTnZrMx9Lp76oefGWk`;
 
     fetch(url)
       .then((res) => res.json())
-      .then((res) => this.setState({ results: res.items }));
+      .then((data) => this.setState({ results: data.items }));
   };
 
-  //use map?
-  updateState;
   render() {
     return (
       <div className="app">
         <h1> Book Search </h1>
-        <BookResult />
+
         <BookSearch
           {...this.state}
-          book_results={this.state.results}
-          searchButton={this.searchButton}
+          search={this.search}
           updateState={this.updateState}
         />
+        <BookResult {...this.state} />
       </div>
     );
   }

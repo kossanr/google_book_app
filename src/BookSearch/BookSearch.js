@@ -1,24 +1,43 @@
 import React from "react";
+import "./BookSearch.css";
+export default function BookSearch(props) {
+  const { q, printType, filter } = props;
 
-export default class BookSearch extends React.Component {
-  render() {
-    return (
-      //needs onChange Handler
-      <form
-        onSubmit={(event) => this.props.searchButton(event)}
-        className="search_form"
-      >
+  return (
+    <form onSubmit={(event) => props.search(event)}>
+      <p>
         <input
           type="text"
-          value={this.props.q}
-          id="search"
-          placeholder="Search"
-          onChange={(e) => this.props.updateState("q", e.target.value)} //target is componenet that triggered event (onSubmit triggered event)
-        />
+          value={q}
+          onChange={(e) => props.updateState("q", e.target.value)}
+        />{" "}
+      </p>
+      <p>
+        {" "}
+        <label>Type</label>
+        <select
+          value={printType}
+          onChange={(e) => props.updateState("printType", e.target.value)}
+        >
+          <option value="all">All</option>
+          <option value="books">Books</option>
+          <option value="ebook">Ebook</option>
+        </select>
+        <label>Filter</label>
+        <select
+          value={filter}
+          onChange={(e) => props.updateState("filter", e.target.value)}
+        >
+          <option value="">None</option>
+          <option value="partial">Partial</option>
+          <option value="full">Full</option>
+          <option value="free-ebooks">Free eBooks</option>
+          <option value="paid-ebooks">Paid eBooks</option>
+        </select>
+      </p>
+      <p>
         <button className="search_button">search</button>
-      </form>
-    );
-  }
+      </p>
+    </form>
+  );
 }
-
-//add onclick event to book search > store method in app.js > method will set state?
